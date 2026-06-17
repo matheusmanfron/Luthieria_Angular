@@ -1,0 +1,16 @@
+<div style="max-width: 400px; margin: 50px auto; text-align: center;">
+  <h2>Fazer Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 15px;">
+    @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+      <small style="color: red; text-align: left;">
+        Por favor, insira um e-mail válido.
+      </small>
+    }
+    <input type="email" formControlName="email" placeholder="E-mail" />
+    <input type="password" formControlName="password" placeholder="Senha" />
+
+    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+  <br>
+  <a routerLink="/cadastro">Não tem conta? Cadastre-se</a> | <a routerLink="/">Home</a>
+</div>
