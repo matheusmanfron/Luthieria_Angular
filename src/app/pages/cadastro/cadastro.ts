@@ -20,8 +20,15 @@ export class Cadastro {
   ) {
     // Constrói o formulário com as validações necessárias
     this.cadastroForm = this.fb.group({
+      nome: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      telefone: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      tipoUsuario: ['cliente', [Validators.required]],
+
+      tempoExperiencia: [''],
+      instrumentoAtendidos: [''],
+      descricaoProfissional: ['']
     });
   }
 

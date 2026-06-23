@@ -1,26 +1,23 @@
-<div style="max-width: 400px; margin: 50px auto; text-align: center;">
-  <h2>Criar Conta</h2>
-  <!-- Conecta o formulário HTML ao FormGroup do TS -->
-  <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 15px;">
-    
-    <input type="email" formControlName="email" placeholder="Seu E-mail" />
-    <!-- Feedback visual de erro -->
-   @if (cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched) {
-      <small style="color: red; text-align: left;">
-        E-mail inválido ou vazio.
-      </small>
-    }
+<select formControlName="tipoUsuario">
+  <option value="cliente">Cliente comum</option>
+  <option value="luthier">Luthier</option>
+</select>
 
-    <input type="password" formControlName="password" placeholder="Sua Senha" />
-    @if (cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched) {
-      <small style="color: red;">
-        A senha deve ter no mínimo 6 caracteres.
-      </small>
-    }
+@if (cadastroForm.get('tipoUsuario')?.value === 'luthier') {
+  <input 
+    type="number" 
+    formControlName="tempoExperiencia" 
+    placeholder="Há quantos anos atua na área?" 
+  />
 
-    <!-- Botão só fica clicável se o formulário for válido -->
-    <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar</button>
-  </form>
-  <br>
-  <a routerLink="/">Voltar para Home</a>
-</div>
+  <input 
+    type="text" 
+    formControlName="instrumentosAtendidos" 
+    placeholder="Instrumentos que atende. Ex: violão, guitarra, baixo" 
+  />
+
+  <textarea 
+    formControlName="descricaoProfissional" 
+    placeholder="Descreva sua experiência como luthier">
+  </textarea>
+}
