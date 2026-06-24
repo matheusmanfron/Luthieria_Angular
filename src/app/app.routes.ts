@@ -16,6 +16,7 @@ export const routes: Routes = [
   { path: 'login', component: Login }, // (Pública)
   { path: 'cadastro', component: Cadastro }, // (Pública)
 
+  
   { path: 'catalogo', component: Catalogo, canActivate: [AuthGuard] },
   { path: 'instrumentos/novo', component: CadastrarInstrumento, canActivate: [AuthGuard] },
   { path: 'conserto/solicitar', component: SolicitarConserto, canActivate: [AuthGuard] },
