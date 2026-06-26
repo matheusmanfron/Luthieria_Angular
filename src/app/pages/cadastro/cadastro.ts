@@ -27,7 +27,7 @@ export class Cadastro {
       tipoUsuario: ['cliente', [Validators.required]],
 
       tempoExperiencia: [''],
-      instrumentoAtendidos: [''],
+      instrumentosAtendidos: [''],
       descricaoProfissional: ['']
     });
   }

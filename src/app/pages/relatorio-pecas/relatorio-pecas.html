@@ -1,0 +1,58 @@
+<section class="page-header">
+  <div>
+    <h2>Relatório de Peças</h2>
+    <p>Resumo das peças usadas ou disponíveis para consertos.</p>
+  </div>
+
+  <a routerLink="/dashboard-luthier" class="btn-link">Voltar ao dashboard</a>
+</section>
+
+<section class="cards-resumo">
+  <article>
+    <h3>{{ pecas.length }}</h3>
+    <p>Tipos de peças</p>
+  </article>
+
+  <article>
+    <h3>{{ totalPecas }}</h3>
+    <p>Quantidade total</p>
+  </article>
+
+  <article>
+    <h3>{{ valorTotalEstoque | currency:'BRL' }}</h3>
+    <p>Valor total estimado</p>
+  </article>
+
+  <article>
+    <h3>{{ pecaMaisCara?.nome }}</h3>
+    <p>Peça de maior valor</p>
+  </article>
+</section>
+
+<section class="tabela-card">
+  <h3>Lista de peças</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Peça</th>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Valor unitário</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (peca of pecas; track peca.id) {
+        <tr>
+          <td>{{ peca.nome }}</td>
+          <td>{{ peca.descricao }}</td>
+          <td>{{ peca.quantidadeEstoque }}</td>
+          <td>{{ peca.valorUnitario | currency:'BRL' }}</td>
+          <td>{{ peca.quantidadeEstoque * peca.valorUnitario | currency:'BRL' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

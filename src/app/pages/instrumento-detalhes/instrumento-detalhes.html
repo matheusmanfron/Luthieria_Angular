@@ -1,1 +1,44 @@
-<p>instrumento-detalhes works!</p>
+@if (carregando) {
+  <p>Carregando detalhes...</p>
+}
+
+@if (mensagemErro) {
+  <p class="erro">{{ mensagemErro }}</p>
+  <a routerLink="/catalogo">Voltar ao catálogo</a>
+}
+
+@if (instrumento) {
+  <section class="detalhes">
+    <div class="detalhes-card">
+      <h2>{{ instrumento.nome }}</h2>
+
+      <p><strong>Tipo:</strong> {{ instrumento.tipo }}</p>
+      <p><strong>Marca:</strong> {{ instrumento.marca }}</p>
+      <p><strong>Modelo:</strong> {{ instrumento.modelo }}</p>
+      <p><strong>Estado:</strong> {{ instrumento.estado }}</p>
+      <p><strong>Preço:</strong> {{ instrumento.preco | currency:'BRL' }}</p>
+
+      <p class="descricao">
+        {{ instrumento.descricao }}
+      </p>
+
+      <div class="acoes">
+        <button type="button" (click)="adicionarAoCarrinho()">
+          Adicionar ao carrinho
+        </button>
+
+        @if (instrumento.aceitaTroca) {
+          <button type="button" (click)="solicitarTroca()">
+            Solicitar troca
+          </button>
+        }
+
+        <button type="button" (click)="solicitarConserto()">
+          Solicitar conserto
+        </button>
+
+        <a routerLink="/catalogo" class="btn-link">Voltar</a>
+      </div>
+    </div>
+  </section>
+}

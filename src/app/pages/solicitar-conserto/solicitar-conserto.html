@@ -1,1 +1,25 @@
-<p>solicitar-conserto works!</p>
+<section class="form-page">
+  <h2>Solicitar Conserto</h2>
+  <p>Informe o instrumento e descreva o problema encontrado.</p>
+
+  <form [formGroup]="consertoForm" (ngSubmit)="onSubmit()">
+    <label>
+      Instrumento
+      <input type="text" formControlName="instrumento">
+    </label>
+
+    <label>
+      Descreva o problema
+      <textarea formControlName="problema"></textarea>
+    </label>
+
+    <label>
+      Luthier responsável
+      <select formControlName="luthierId">
+        <option [value]="1">Luthier principal</option>
+      </select>
+    </label>
+
+    <button type="submit">Enviar Solicitação</button>
+  </form>
+</section>

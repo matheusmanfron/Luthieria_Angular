@@ -1,1 +1,49 @@
-<p>meus-anuncios works!</p>
+<section class="page-header">
+  <h2>Meus Anúncios</h2>
+  <p>Veja os instrumentos que você anunciou na plataforma.</p>
+
+  <a routerLink="/instrumentos/novo" class="btn-link">
+    Anunciar novo instrumento
+  </a>
+</section>
+
+@if (carregando) {
+  <p>Carregando anúncios...</p>
+}
+
+@if (mensagemErro) {
+  <p class="erro">{{ mensagemErro }}</p>
+}
+
+<section class="grid">
+  @for (instrumento of meusAnuncios; track instrumento.id) {
+    <article class="card">
+      <h3>{{ instrumento.nome }}</h3>
+
+      <p><strong>Tipo:</strong> {{ instrumento.tipo }}</p>
+      <p><strong>Marca:</strong> {{ instrumento.marca }}</p>
+      <p><strong>Modelo:</strong> {{ instrumento.modelo }}</p>
+      <p><strong>Estado:</strong> {{ instrumento.estado }}</p>
+      <p><strong>Preço:</strong> {{ instrumento.preco | currency:'BRL' }}</p>
+      <p><strong>Aceita troca:</strong> {{ instrumento.aceitaTroca ? 'Sim' : 'Não' }}</p>
+
+      <p>{{ instrumento.descricao }}</p>
+
+      <div class="acoes">
+        <a [routerLink]="['/instrumentos', instrumento.id]" class="btn-link">
+          Ver detalhes
+        </a>
+
+        <button type="button" (click)="pausarAnuncio(instrumento)">
+          Pausar
+        </button>
+
+        <button type="button" (click)="removerDaTela(instrumento.id)">
+          Remover
+        </button>
+      </div>
+    </article>
+  } @empty {
+    <p>Você ainda não possui anúncios cadastrados.</p>
+  }
+</section>

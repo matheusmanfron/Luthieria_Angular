@@ -1,1 +1,39 @@
-<p>catalogo works!</p>
+<section class="page-header">
+  <h2>Catálogo de Instrumentos</h2>
+  <p>Veja instrumentos disponíveis para compra, troca ou conserto.</p>
+</section>
+
+@if (carregando) {
+  <p>Carregando instrumentos...</p>
+}
+
+@if (mensagemErro) {
+  <p class="erro">{{ mensagemErro }}</p>
+}
+
+<section class="grid">
+  @for (instrumento of instrumentos; track instrumento.id) {
+    <article class="card">
+      <h3>{{ instrumento.nome }}</h3>
+
+      <p><strong>Tipo:</strong> {{ instrumento.tipo }}</p>
+      <p><strong>Marca:</strong> {{ instrumento.marca }}</p>
+      <p><strong>Modelo:</strong> {{ instrumento.modelo }}</p>
+      <p><strong>Estado:</strong> {{ instrumento.estado }}</p>
+      <p><strong>Preço:</strong> {{ instrumento.preco | currency:'BRL' }}</p>
+      <p>{{ instrumento.descricao }}</p>
+
+      <div class="acoes">
+        <button (click)="adicionarAoCarrinho(instrumento)">Adicionar ao carrinho</button>
+
+        @if (instrumento.aceitaTroca) {
+          <button type="button" (click)="solicitarTroca(instrumento)">Solicitar troca</button>
+        }
+
+        <button type="button" (click)="solicitarConserto(instrumento)">Solicitar conserto</button>
+      </div>
+    </article>
+  } @empty {
+    <p>Nenhum instrumento cadastrado ainda.</p>
+  }
+</section>

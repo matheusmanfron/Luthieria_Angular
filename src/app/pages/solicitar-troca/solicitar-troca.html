@@ -1,0 +1,52 @@
+<section class="form-page">
+  <h2>Solicitar Troca</h2>
+  <p>Escolha o instrumento que deseja e informe qual instrumento você oferece em troca.</p>
+
+  @if (carregando) {
+    <p>Carregando instrumentos...</p>
+  }
+
+  @if (mensagemErro) {
+    <p class="erro">{{ mensagemErro }}</p>
+  }
+
+  <form [formGroup]="trocaForm" (ngSubmit)="onSubmit()">
+    <label>
+      Instrumento desejado
+      <select formControlName="instrumentoDesejadoId">
+        <option [value]="0">Selecione</option>
+
+        @for (instrumento of instrumentos; track instrumento.id) {
+          <option [value]="instrumento.id">
+            {{ instrumento.nome }} - {{ instrumento.marca }} - {{ instrumento.preco | currency:'BRL' }}
+          </option>
+        }
+      </select>
+    </label>
+
+    <label>
+      Instrumento oferecido
+      <select formControlName="instrumentoOferecidoId">
+        <option [value]="0">Selecione</option>
+
+        @for (instrumento of instrumentos; track instrumento.id) {
+          <option [value]="instrumento.id">
+            {{ instrumento.nome }} - {{ instrumento.marca }}
+          </option>
+        }
+      </select>
+    </label>
+
+    <label>
+      Mensagem para o outro usuário
+      <textarea
+        formControlName="mensagem"
+        placeholder="Explique sua proposta de troca..."
+      ></textarea>
+    </label>
+
+    <button type="submit">Enviar solicitação</button>
+
+    <a routerLink="/catalogo" class="btn-link">Voltar ao catálogo</a>
+  </form>
+</section>

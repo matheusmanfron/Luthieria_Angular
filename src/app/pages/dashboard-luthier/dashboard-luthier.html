@@ -1,1 +1,58 @@
-<p>dashboard-luthier works!</p>
+<section class="page-header">
+  <h2>Dashboard do Luthier</h2>
+  <p>Acompanhe os chamados e consertos em andamento.</p>
+</section>
+
+<section class="cards-resumo">
+  <article>
+    <h3>{{ solicitados }}</h3>
+    <p>Novos chamados</p>
+  </article>
+
+  <article>
+    <h3>{{ emAndamento }}</h3>
+    <p>Em andamento</p>
+  </article>
+
+  <article>
+    <h3>{{ finalizados }}</h3>
+    <p>Finalizados</p>
+  </article>
+</section>
+
+@if (mensagemErro) {
+  <p class="erro">{{ mensagemErro }}</p>
+}
+
+<section class="lista">
+  <h3>Serviços</h3>
+
+  @for (servico of servicos; track servico.id) {
+    <article class="card">
+      <h4>{{ servico.instrumento }}</h4>
+
+      <p><strong>Status:</strong> {{ servico.status }}</p>
+      <p><strong>Observações:</strong> {{ servico.observacoes }}</p>
+
+      <div class="acoes">
+        @if (servico.status === 'solicitado') {
+          <button (click)="alterarStatus(servico, 'aceito')">Aceitar</button>
+        }
+
+        @if (servico.status === 'aceito') {
+          <button (click)="alterarStatus(servico, 'em_andamento')">Iniciar conserto</button>
+        }
+
+        @if (servico.status === 'em_andamento') {
+          <button (click)="alterarStatus(servico, 'finalizado')">Finalizar</button>
+        }
+
+        @if (servico.status !== 'finalizado') {
+          <button (click)="alterarStatus(servico, 'cancelado')">Cancelar</button>
+        }
+      </div>
+    </article>
+  } @empty {
+    <p>Nenhum serviço encontrado.</p>
+  }
+</section>

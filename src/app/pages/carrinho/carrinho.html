@@ -1,0 +1,102 @@
+<section class="page-header">
+  <div>
+    <h2>Meu Carrinho</h2>
+    <p>Confira os instrumentos adicionados antes de finalizar a compra.</p>
+  </div>
+
+  <a routerLink="/catalogo" class="btn-link">
+    Continuar comprando
+  </a>
+</section>
+
+@if (itens.length === 0) {
+  <section class="carrinho-vazio">
+    <h3>Seu carrinho está vazio</h3>
+    <p>Adicione instrumentos pelo catálogo para simular uma compra.</p>
+
+    <a routerLink="/catalogo" class="btn-link">
+      Ver catálogo
+    </a>
+  </section>
+} @else {
+  <section class="carrinho-layout">
+    <div class="lista-itens">
+      @for (item of itens; track item.instrumento.id) {
+        <article class="item-card">
+          <div class="item-info">
+            <h3>{{ item.instrumento.nome }}</h3>
+
+            <p>
+              <strong>Marca:</strong>
+              {{ item.instrumento.marca }}
+            </p>
+
+            <p>
+              <strong>Modelo:</strong>
+              {{ item.instrumento.modelo }}
+            </p>
+
+            <p>
+              <strong>Estado:</strong>
+              {{ item.instrumento.estado }}
+            </p>
+
+            <p>
+              <strong>Preço unitário:</strong>
+              {{ item.instrumento.preco | currency:'BRL' }}
+            </p>
+          </div>
+
+          <div class="item-controles">
+            <div class="quantidade">
+              <button type="button" (click)="diminuirQuantidade(item)">
+                -
+              </button>
+
+              <span>{{ item.quantidade }}</span>
+
+              <button type="button" (click)="aumentarQuantidade(item)">
+                +
+              </button>
+            </div>
+
+            <p class="subtotal">
+              Subtotal:
+              {{ item.instrumento.preco * item.quantidade | currency:'BRL' }}
+            </p>
+
+            <button
+              type="button"
+              class="btn-remover"
+              (click)="removerItem(item.instrumento.id)"
+            >
+              Remover
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+
+    <aside class="resumo">
+      <h3>Resumo da compra</h3>
+
+      <p>
+        <strong>Itens:</strong>
+        {{ itens.length }}
+      </p>
+
+      <p>
+        <strong>Total:</strong>
+        {{ total | currency:'BRL' }}
+      </p>
+
+      <button type="button" class="btn-finalizar" (click)="finalizarCompra()">
+        Finalizar compra
+      </button>
+
+      <button type="button" class="btn-limpar" (click)="limparCarrinho()">
+        Limpar carrinho
+      </button>
+    </aside>
+  </section>
+}

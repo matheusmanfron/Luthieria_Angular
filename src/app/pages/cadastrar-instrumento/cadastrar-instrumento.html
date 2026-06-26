@@ -1,1 +1,60 @@
-<p>cadastrar-instrumento works!</p>
+<section class="form-page">
+  <h2>Anunciar Instrumento</h2>
+  <p>Preencha as informações do instrumento que deseja vender ou trocar.</p>
+
+  <form [formGroup]="instrumentoForm" (ngSubmit)="onSubmit()">
+    <label>
+      Nome do instrumento
+      <input type="text" formControlName="nome">
+    </label>
+
+    <label>
+      Tipo
+      <select formControlName="tipo">
+        <option value="">Selecione</option>
+        <option value="violao">Violão</option>
+        <option value="guitarra">Guitarra</option>
+        <option value="baixo">Baixo</option>
+        <option value="violino">Violino</option>
+        <option value="bateria">Bateria</option>
+        <option value="outro">Outro</option>
+      </select>
+    </label>
+
+    <label>
+      Marca
+      <input type="text" formControlName="marca">
+    </label>
+
+    <label>
+      Modelo
+      <input type="text" formControlName="modelo">
+    </label>
+
+    <label>
+      Estado
+      <select formControlName="estado">
+        <option value="novo">Novo</option>
+        <option value="usado">Usado</option>
+        <option value="precisa_conserto">Precisa de conserto</option>
+      </select>
+    </label>
+
+    <label>
+      Preço
+      <input type="number" formControlName="preco">
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" formControlName="aceitaTroca">
+      Aceita troca?
+    </label>
+
+    <label>
+      Descrição
+      <textarea formControlName="descricao"></textarea>
+    </label>
+
+    <button type="submit">Cadastrar Instrumento</button>
+  </form>
+</section>

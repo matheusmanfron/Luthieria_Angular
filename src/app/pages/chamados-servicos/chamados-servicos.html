@@ -1,0 +1,41 @@
+<section class="page-header">
+  <div>
+    <h2>Chamados de Serviços</h2>
+    <p>Veja as novas solicitações de conserto enviadas pelos usuários.</p>
+  </div>
+
+  <a routerLink="/dashboard-luthier" class="btn-link">Voltar ao dashboard</a>
+</section>
+
+@if (carregando) {
+  <p>Carregando chamados...</p>
+}
+
+@if (mensagemErro) {
+  <p class="erro">{{ mensagemErro }}</p>
+}
+
+<section class="lista">
+  @for (chamado of chamados; track chamado.id) {
+    <article class="card">
+      <h3>{{ chamado.instrumento }}</h3>
+
+      <p><strong>Cliente:</strong> #{{ chamado.clienteId }}</p>
+      <p><strong>Status:</strong> {{ chamado.status }}</p>
+      <p><strong>Problema/observações:</strong> {{ chamado.observacoes }}</p>
+
+      <div class="acoes">
+        @if (chamado.status === 'solicitado') {
+          <button type="button" (click)="aceitarChamado(chamado)">Aceitar</button>
+          <button type="button" class="btn-danger" (click)="recusarChamado(chamado)">Recusar</button>
+        }
+
+        @if (chamado.status === 'aceito') {
+          <button type="button" (click)="iniciarConserto(chamado)">Iniciar conserto</button>
+        }
+      </div>
+    </article>
+  } @empty {
+    <p>Nenhum chamado novo encontrado.</p>
+  }
+</section>

@@ -1,1 +1,38 @@
-<p>meus-servicos works!</p>
+<section class="page-header">
+  <h2>Meus Serviços</h2>
+  <p>Acompanhe os consertos solicitados para seus instrumentos.</p>
+
+  <a routerLink="/conserto/solicitar" class="btn-link">
+    Solicitar novo conserto
+  </a>
+</section>
+
+@if (carregando) {
+  <p>Carregando serviços...</p>
+}
+
+@if (mensagemErro) {
+  <p class="erro">{{ mensagemErro }}</p>
+}
+
+<section class="lista-servicos">
+  @for (servico of meusServicos; track servico.id) {
+    <article class="card">
+      <div class="topo-card">
+        <h3>{{ servico.instrumento }}</h3>
+        <span class="status">{{ textoStatus(servico.status) }}</span>
+      </div>
+
+      <p><strong>Observações:</strong> {{ servico.observacoes }}</p>
+      <p><strong>Luthier:</strong> #{{ servico.luthierId }}</p>
+
+      @if (servico.status === 'solicitado' || servico.status === 'aceito') {
+        <button type="button" (click)="cancelarServico(servico)">
+          Cancelar solicitação
+        </button>
+      }
+    </article>
+  } @empty {
+    <p>Você ainda não solicitou nenhum serviço.</p>
+  }
+</section>

@@ -1,42 +1,82 @@
-<!-- src/app/pages/dashboard/dashboard.component.html -->
-
-<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif;">
-  
-  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
-    <h2>Painel de Controle (Dashboard)</h2>
-    <!-- Botão que chama a função de deslogar -->
-    <button (click)="fazerLogout()" style="padding: 5px 15px; background-color: #ff4c4c; color: white; border: none; cursor: pointer;">
-      Sair do Sistema
-    </button>
+<section class="dashboard-header">
+  <div>
+    <h2>Meu Painel</h2>
+    <p>Gerencie seus anúncios, compras representativas e solicitações de conserto.</p>
   </div>
 
-  <div style="margin-top: 20px;">
-    <h3>Usuários Cadastrados no Banco de Dados:</h3>
+  <button type="button" (click)="fazerLogout()">
+    Sair
+  </button>
+</section>
 
-    <!-- Se houver alguma mensagem de erro de permissão, mostramos aqui -->
-    @if (mensagemErro) {
-      <div style="background-color: #ffdddd; color: red; padding: 10px; border-radius: 5px;">
-        {{ mensagemErro }}
-      </div>
+@if (carregando) {
+  <p>Carregando painel...</p>
+}
+
+@if (mensagemErro) {
+  <p class="erro">{{ mensagemErro }}</p>
+}
+
+<section class="cards-resumo">
+  <article>
+    <h3>{{ meusAnuncios.length }}</h3>
+    <p>Meus anúncios</p>
+  </article>
+
+  <article>
+    <h3>{{ meusServicos.length }}</h3>
+    <p>Serviços solicitados</p>
+  </article>
+
+  <article>
+    <h3>{{ servicosEmAndamento }}</h3>
+    <p>Consertos em andamento</p>
+  </article>
+
+  <article>
+    <h3>{{ anunciosComTroca }}</h3>
+    <p>Anúncios que aceitam troca</p>
+  </article>
+</section>
+
+<section class="atalhos">
+  <a routerLink="/catalogo" class="atalho-card">
+    <h3>Ver catálogo</h3>
+    <p>Comprar ou visualizar instrumentos disponíveis.</p>
+  </a>
+
+  <a routerLink="/instrumentos/novo" class="atalho-card">
+    <h3>Anunciar instrumento</h3>
+    <p>Cadastrar um instrumento para venda ou troca.</p>
+  </a>
+
+  <a routerLink="/conserto/solicitar" class="atalho-card">
+    <h3>Solicitar conserto</h3>
+    <p>Enviar um instrumento para avaliação de um luthier.</p>
+  </a>
+
+  <a routerLink="/meus-servicos" class="atalho-card">
+    <h3>Meus serviços</h3>
+    <p>Acompanhar o andamento dos consertos solicitados.</p>
+  </a>
+</section>
+
+<section class="ultimos">
+  <h3>Últimos instrumentos cadastrados</h3>
+
+  <div class="grid">
+    @for (instrumento of instrumentos.slice(0, 3); track instrumento.id) {
+      <article class="card">
+        <h4>{{ instrumento.nome }}</h4>
+        <p>{{ instrumento.marca }} - {{ instrumento.modelo }}</p>
+        <p>{{ instrumento.preco | currency:'BRL' }}</p>
+
+        <a [routerLink]="['/instrumentos', instrumento.id]" class="btn-link">
+          Ver detalhes
+        </a>
+      </article>
+    } @empty {
+      <p>Nenhum instrumento cadastrado ainda.</p>
     }
-
-    <!-- Estrutura de repetição moderna do Angular (@for) -->
-    <ul style="list-style-type: none; padding: 0;">
-      @for (usuario of listaDeUsuarios; track usuario.id) {
-        
-        <!-- Para cada usuário na lista, criamos um item visual -->
-        <li style="background-color: #f4f4f4; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
-          <strong>ID:</strong> {{ usuario.id }} <br>
-          <strong>E-mail:</strong> {{ usuario.email }}
-        </li>
-        
-      } @empty {
-        
-        <!-- O @empty aparece automaticamente se a listaDeUsuarios estiver vazia -->
-        <p>Carregando usuários ou nenhum usuário encontrado...</p>
-        
-      }
-    </ul>
   </div>
-
-</div>
+</section>

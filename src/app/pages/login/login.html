@@ -1,16 +1,43 @@
-<div style="max-width: 400px; margin: 50px auto; text-align: center;">
-  <h2>Fazer Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 15px;">
-    @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-      <small style="color: red; text-align: left;">
-        Por favor, insira um e-mail válido.
-      </small>
-    }
-    <input type="email" formControlName="email" placeholder="E-mail" />
-    <input type="password" formControlName="password" placeholder="Senha" />
+<section class="login-page">
+  <div class="login-card">
+    <h2>Entrar na plataforma</h2>
+    <p>Acesse sua conta para comprar, anunciar ou solicitar consertos.</p>
 
-    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
-  </form>
-  <br>
-  <a routerLink="/cadastro">Não tem conta? Cadastre-se</a> | <a routerLink="/">Home</a>
-</div>
+    @if (mensagemErro) {
+      <p class="erro">{{ mensagemErro }}</p>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label>
+        E-mail
+        <input type="email" formControlName="email" placeholder="seuemail@email.com">
+      </label>
+
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <small class="erro">Informe um e-mail válido.</small>
+      }
+
+      <label>
+        Senha
+        <input type="password" formControlName="password" placeholder="Digite sua senha">
+      </label>
+
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <small class="erro">A senha é obrigatória.</small>
+      }
+
+      <button type="submit" [disabled]="carregando">
+        {{ carregando ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </form>
+
+    <p class="links">
+      Não tem conta?
+      <a routerLink="/cadastro">Cadastre-se</a>
+    </p>
+
+    <p class="links">
+      <a routerLink="/">Voltar para Home</a>
+    </p>
+  </div>
+</section>

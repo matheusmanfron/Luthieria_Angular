@@ -1,0 +1,53 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.cards-resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cards-resumo article,
+.tabela-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.cards-resumo h3 {
+  margin: 0;
+  font-size: 26px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee0d1;
+  text-align: left;
+}
+
+th {
+  background: #f5f2ec;
+}
+
+.btn-link {
+  background: #2b2118;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+}

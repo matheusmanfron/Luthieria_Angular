@@ -27,7 +27,7 @@ export class ServicoService{
         return this.http.patch<Servico>(`${this.apiUrl}/${id}`, servico);
     }
 
-    finalzarServico(id: number): Observable<Servico>{
+    finalizarServico(id: number): Observable<Servico>{
         return this.http.patch<Servico>(`${this.apiUrl}/${id}`, {
             status: 'finalizado'
         });

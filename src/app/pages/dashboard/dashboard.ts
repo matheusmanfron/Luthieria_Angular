@@ -1,52 +1,89 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+
 import { AuthService } from '../../services/auth';
-import { Router } from '@angular/router';
+import { InstrumentoService } from '../../services/instrumento';
+import { ServicoService } from '../../services/servico-luthier';
+
+import { Instrumento } from '../../models/instrumento-model';
+import { Servico } from '../../models/servico-model';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [CommonModule, RouterLink, CurrencyPipe],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css'],
+  styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
- listaDeUsuarios: any[] = [];
-  mensagemErro: string = '';
+  private authService = inject(AuthService);
+  private instrumentoService = inject(InstrumentoService);
+  private servicoService = inject(ServicoService);
+  private router = inject(Router);
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private cdr: ChangeDetectorRef // 1. Injetamos o detector de mudanças aqui
-  ) {}
+  instrumentos: Instrumento[] = [];
+  servicos: Servico[] = [];
+
+  usuarioLogadoId = 1;
+  mensagemErro = '';
+  carregando = true;
 
   ngOnInit(): void {
-    this.carregarUsuarios();
+    this.carregarDados();
   }
 
-  carregarUsuarios(): void {
-    this.authService.listarUsuarios().subscribe({
-      next: (dadosDaApi) => {
-        // 2. Verificamos se é um array de dados válido
-        if (Array.isArray(dadosDaApi)) {
-          // 3. Colocamos os dados na variável
-          this.listaDeUsuarios = dadosDaApi;
-          
-          // 4. A CORREÇÃO MÁGICA: Avisamos o HTML para atualizar a tela neste exato segundo!
-          this.cdr.detectChanges();
-        } else {
-          this.listaDeUsuarios = [];
-        }
+  carregarDados(): void {
+    this.instrumentoService.listarInstrumentos().subscribe({
+      next: (instrumentos) => {
+        this.instrumentos = instrumentos;
+        this.carregarServicos();
       },
-      error: (erro) => {
-        this.mensagemErro = 'Falha ao buscar dados: ' + (erro.error?.erro || erro.message);
-        
-        // Avisamos o HTML caso a mensagem de erro precise aparecer
-        this.cdr.detectChanges();
+      error: () => {
+        this.mensagemErro = 'Erro ao carregar instrumentos.';
+        this.carregando = false;
       }
     });
   }
 
+  carregarServicos(): void {
+    this.servicoService.listarServicos().subscribe({
+      next: (servicos) => {
+        this.servicos = servicos;
+        this.carregando = false;
+      },
+      error: () => {
+        this.mensagemErro = 'Erro ao carregar serviços.';
+        this.carregando = false;
+      }
+    });
+  }
+
+  get meusAnuncios(): Instrumento[] {
+    return this.instrumentos.filter(
+      instrumento => instrumento.donoId === this.usuarioLogadoId
+    );
+  }
+
+  get meusServicos(): Servico[] {
+    return this.servicos.filter(
+      servico => servico.clienteId === this.usuarioLogadoId
+    );
+  }
+
+  get servicosEmAndamento(): number {
+    return this.meusServicos.filter(
+      servico => servico.status === 'em_andamento'
+    ).length;
+  }
+
+  get anunciosComTroca(): number {
+    return this.meusAnuncios.filter(
+      instrumento => instrumento.aceitaTroca
+    ).length;
+  }
+
   fazerLogout(): void {
-    this.authService.sair(); 
-    this.router.navigate(['/login']); 
+    this.authService.sair();
+    this.router.navigate(['/login']);
   }
 }
