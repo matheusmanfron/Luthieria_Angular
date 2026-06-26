@@ -4,7 +4,9 @@
     <p>Registre o serviço realizado, peças usadas e finalize o chamado.</p>
   </div>
 
-  <a routerLink="/dashboard-luthier" class="btn-link">Voltar ao dashboard</a>
+  <a routerLink="/dashboard-luthier" class="btn-link">
+    Voltar ao dashboard
+  </a>
 </section>
 
 @if (carregando) {
@@ -19,6 +21,7 @@
   <form [formGroup]="consertoForm" (ngSubmit)="finalizarConserto()">
     <label>
       Serviço
+
       <select formControlName="servicoId">
         <option [value]="0">Selecione um serviço</option>
 
@@ -32,11 +35,13 @@
 
     <label>
       Problema encontrado
+
       <textarea formControlName="problemaEncontrado"></textarea>
     </label>
 
     <label>
       Serviço realizado
+
       <textarea formControlName="servicoRealizado"></textarea>
     </label>
 
@@ -45,25 +50,37 @@
 
       <label>
         Nome da peça
+
         <input type="text" formControlName="pecaNome">
       </label>
 
       <label>
         Descrição da peça
+
         <input type="text" formControlName="pecaDescricao">
       </label>
 
       <label>
         Valor da peça
+
         <input type="number" formControlName="pecaValor">
       </label>
 
-      <button type="button" (click)="adicionarPeca()">Adicionar peça</button>
+      <button type="button" (click)="adicionarPeca()">
+        Adicionar peça
+      </button>
 
       @for (peca of pecasUtilizadas; track peca.id) {
         <div class="peca-item">
-          <span>{{ peca.nome }} - {{ peca.valorUnitario | currency:'BRL' }}</span>
-          <button type="button" class="btn-danger" (click)="removerPeca(peca.id)">
+          <span>
+            {{ peca.nome }} - {{ peca.valorUnitario | currency:'BRL' }}
+          </span>
+
+          <button
+            type="button"
+            class="btn-danger"
+            (click)="removerPeca(peca.id)"
+          >
             Remover
           </button>
         </div>
@@ -74,19 +91,30 @@
 
     <label>
       Valor da mão de obra
+
       <input type="number" formControlName="maoDeObra">
     </label>
 
     <label>
       Observações finais
+
       <textarea formControlName="observacoesFinais"></textarea>
     </label>
 
     <section class="total-box">
-      <p><strong>Total peças:</strong> {{ totalPecas | currency:'BRL' }}</p>
-      <p><strong>Total conserto:</strong> {{ totalConserto | currency:'BRL' }}</p>
+      <p>
+        <strong>Total peças:</strong>
+        {{ totalPecas | currency:'BRL' }}
+      </p>
+
+      <p>
+        <strong>Total conserto:</strong>
+        {{ totalConserto | currency:'BRL' }}
+      </p>
     </section>
 
-    <button type="submit">Finalizar conserto</button>
+    <button type="submit">
+      Finalizar conserto
+    </button>
   </form>
 </section>

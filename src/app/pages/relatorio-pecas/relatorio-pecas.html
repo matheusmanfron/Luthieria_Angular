@@ -4,7 +4,9 @@
     <p>Resumo das peças usadas ou disponíveis para consertos.</p>
   </div>
 
-  <a routerLink="/dashboard-luthier" class="btn-link">Voltar ao dashboard</a>
+  <a routerLink="/dashboard-luthier" class="btn-link">
+    Voltar ao dashboard
+  </a>
 </section>
 
 <section class="cards-resumo">
@@ -51,6 +53,10 @@
           <td>{{ peca.quantidadeEstoque }}</td>
           <td>{{ peca.valorUnitario | currency:'BRL' }}</td>
           <td>{{ peca.quantidadeEstoque * peca.valorUnitario | currency:'BRL' }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5">Nenhuma peça cadastrada.</td>
         </tr>
       }
     </tbody>

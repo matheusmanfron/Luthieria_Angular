@@ -1,0 +1,91 @@
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  color: #2b2118;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: #5d4a3a;
+  margin: 0;
+}
+
+.cards-resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.cards-resumo article {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.cards-resumo h3 {
+  margin: 0;
+  font-size: 34px;
+  color: #7a4f2a;
+}
+
+.cards-resumo p {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lista h3 {
+  color: #2b2118;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.card h4 {
+  margin-top: 0;
+  color: #2b2118;
+}
+
+.card p {
+  color: #4b3a2c;
+}
+
+.acoes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+button {
+  background: #7a4f2a;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #5d391d;
+}
+
+.erro {
+  color: #b00020;
+  font-weight: bold;
+}

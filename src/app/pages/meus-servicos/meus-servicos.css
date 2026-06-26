@@ -1,0 +1,93 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  color: #2b2118;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: #5d4a3a;
+  margin: 0;
+}
+
+.lista-servicos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.topo-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.topo-card h3 {
+  margin: 0;
+  color: #2b2118;
+}
+
+.status {
+  background: #eee0d1;
+  color: #2b2118;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.card p {
+  color: #4b3a2c;
+  line-height: 1.4;
+}
+
+.btn-link {
+  display: inline-block;
+  background: #2b2118;
+  color: white;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.btn-link:hover {
+  background: #1b140f;
+}
+
+button {
+  background: #b00020;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+button:hover {
+  background: #7a0015;
+}
+
+.erro {
+  color: #b00020;
+  font-weight: bold;
+}

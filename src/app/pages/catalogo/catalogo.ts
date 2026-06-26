@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { Instrumento } from '../../models/instrumento-model';
 import { InstrumentoService } from '../../services/instrumento';
+import { CarrinhoService } from '../../services/carrinho';
 
 @Component({
   selector: 'app-catalogo',
@@ -12,14 +13,13 @@ import { InstrumentoService } from '../../services/instrumento';
   styleUrl: './catalogo.css',
 })
 export class Catalogo implements OnInit {
+  private instrumentoService = inject(InstrumentoService);
+  private carrinhoService = inject(CarrinhoService);
+  private router = inject(Router);
+
   instrumentos: Instrumento[] = [];
   carregando = true;
   mensagemErro = '';
-
-  constructor(
-    private instrumentoService: InstrumentoService,
-    private router: Router
-  ) {}
 
   ngOnInit(): void {
     this.carregarInstrumentos();
@@ -32,18 +32,23 @@ export class Catalogo implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar instrumentos';
+        this.mensagemErro = 'Erro ao carregar instrumentos.';
         this.carregando = false;
       }
     });
   }
 
   adicionarAoCarrinho(instrumento: Instrumento): void {
+    this.carrinhoService.adicionarAoCarrinho(instrumento);
     alert(`${instrumento.nome} adicionado ao carrinho.`);
   }
 
   solicitarTroca(instrumento: Instrumento): void {
-    alert(`Solicitação de troca para ${instrumento.nome}.`);
+    this.router.navigate(['/troca/solicitar'], {
+      queryParams: {
+        instrumentoDesejadoId: instrumento.id
+      }
+    });
   }
 
   solicitarConserto(instrumento: Instrumento): void {
