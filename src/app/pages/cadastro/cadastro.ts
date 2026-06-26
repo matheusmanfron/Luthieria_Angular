@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+﻿import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -27,7 +27,6 @@ export class Cadastro {
     email: ['', [Validators.required, Validators.email]],
     telefone: ['', [Validators.required]],
     senha: ['', [Validators.required, Validators.minLength(6)]],
-
     tempoExperiencia: [''],
     instrumentosAtendidos: [''],
     descricaoProfissional: [''],
@@ -44,10 +43,7 @@ export class Cadastro {
     if (tipo === 'luthier') {
       tempoExperiencia?.setValidators([Validators.required]);
       instrumentosAtendidos?.setValidators([Validators.required]);
-      descricaoProfissional?.setValidators([
-        Validators.required,
-        Validators.minLength(10)
-      ]);
+      descricaoProfissional?.setValidators([Validators.required, Validators.minLength(10)]);
     } else {
       tempoExperiencia?.clearValidators();
       instrumentosAtendidos?.clearValidators();
@@ -72,7 +68,7 @@ export class Cadastro {
 
   onSubmit(): void {
     if (!this.tipoSelecionado) {
-      this.mensagemErro = 'Selecione se você é cliente ou luthier.';
+      this.mensagemErro = 'Selecione se vocÃª Ã© cliente ou luthier.';
       return;
     }
 
@@ -89,21 +85,14 @@ export class Cadastro {
       telefone: valor.telefone ?? '',
       senha: valor.senha ?? '',
       tipo: this.tipoSelecionado,
-
-      tempoExperiencia: this.tipoSelecionado === 'luthier'
-        ? valor.tempoExperiencia
-        : null,
-
+      tempoExperiencia: this.tipoSelecionado === 'luthier' ? valor.tempoExperiencia : null,
       instrumentosAtendidos: this.tipoSelecionado === 'luthier'
         ? (valor.instrumentosAtendidos ?? '')
-            .split(',')
-            .map(instrumento => instrumento.trim())
-            .filter(instrumento => instrumento.length > 0)
+          .split(',')
+          .map(instrumento => instrumento.trim())
+          .filter(instrumento => instrumento.length > 0)
         : [],
-
-      descricaoProfissional: this.tipoSelecionado === 'luthier'
-        ? valor.descricaoProfissional
-        : ''
+      descricaoProfissional: this.tipoSelecionado === 'luthier' ? valor.descricaoProfissional : ''
     };
 
     this.carregando = true;

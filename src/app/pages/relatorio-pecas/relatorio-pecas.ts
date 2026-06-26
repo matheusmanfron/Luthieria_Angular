@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -14,15 +14,15 @@ export class RelatorioPecas {
   pecas: Peca[] = [
     {
       id: 1,
-      nome: 'Corda de violão',
-      descricao: 'Troca de corda de aço',
+      nome: 'Corda de violÃ£o',
+      descricao: 'Troca de corda de aÃ§o',
       quantidadeEstoque: 12,
       valorUnitario: 25
     },
     {
       id: 2,
       nome: 'Tarraxa',
-      descricao: 'Substituição de tarraxa danificada',
+      descricao: 'SubstituiÃ§Ã£o de tarraxa danificada',
       quantidadeEstoque: 4,
       valorUnitario: 45
     },

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+﻿import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -41,7 +41,7 @@ export class Login {
       },
       error: () => {
         this.carregando = false;
-        this.mensagemErro = 'E-mail ou senha inválidos.';
+        this.mensagemErro = 'E-mail ou senha invÃ¡lidos.';
       }
     });
   }

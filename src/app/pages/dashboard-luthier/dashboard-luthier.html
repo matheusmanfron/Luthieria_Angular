@@ -1,6 +1,12 @@
-<section class="page-header">
+﻿<section class="page-header">
   <h2>Dashboard do Luthier</h2>
   <p>Acompanhe os chamados e consertos em andamento.</p>
+
+  <div class="acoes">
+    <a routerLink="/luthier/chamados" class="btn-link">Chamados</a>
+    <a routerLink="/luthier/registrar-conserto" class="btn-link">Registrar conserto</a>
+    <a routerLink="/luthier/relatorio-pecas" class="btn-link">Relatório de peças</a>
+  </div>
 </section>
 
 <section class="cards-resumo">
@@ -36,19 +42,19 @@
 
       <div class="acoes">
         @if (servico.status === 'solicitado') {
-          <button (click)="alterarStatus(servico, 'aceito')">Aceitar</button>
+          <button type="button" (click)="alterarStatus(servico, 'aceito')">Aceitar</button>
         }
 
         @if (servico.status === 'aceito') {
-          <button (click)="alterarStatus(servico, 'em_andamento')">Iniciar conserto</button>
+          <button type="button" (click)="alterarStatus(servico, 'em_andamento')">Iniciar conserto</button>
         }
 
         @if (servico.status === 'em_andamento') {
-          <button (click)="alterarStatus(servico, 'finalizado')">Finalizar</button>
+          <button type="button" (click)="alterarStatus(servico, 'finalizado')">Finalizar</button>
         }
 
         @if (servico.status !== 'finalizado') {
-          <button (click)="alterarStatus(servico, 'cancelado')">Cancelar</button>
+          <button type="button" (click)="alterarStatus(servico, 'cancelado')">Cancelar</button>
         }
       </div>
     </article>

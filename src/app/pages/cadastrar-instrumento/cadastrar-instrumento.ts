@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+﻿import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,7 +8,6 @@ import { InstrumentoService } from '../../services/instrumento';
 
 @Component({
   selector: 'app-cadastrar-instrumento',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './cadastrar-instrumento.html',
   styleUrl: './cadastrar-instrumento.css',

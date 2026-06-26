@@ -1,25 +1,19 @@
-<section class="cadastro-page">
+﻿<section class="cadastro-page">
   @if (!tipoSelecionado) {
     <div class="escolha-card">
       <h2>Criar conta</h2>
 
-      <p>
-        Escolha o tipo de cadastro para continuar.
-      </p>
+      <p>Escolha o tipo de cadastro para continuar.</p>
 
       <div class="opcoes">
         <button type="button" class="opcao-card" (click)="selecionarTipo('cliente')">
           <h3>Cliente</h3>
-          <p>
-            Quero comprar, anunciar, trocar instrumentos e solicitar consertos.
-          </p>
+          <p>Quero comprar, anunciar, trocar instrumentos e solicitar consertos.</p>
         </button>
 
         <button type="button" class="opcao-card" (click)="selecionarTipo('luthier')">
           <h3>Luthier</h3>
-          <p>
-            Quero oferecer serviços, gerenciar consertos e acompanhar chamados.
-          </p>
+          <p>Quero oferecer serviços, gerenciar consertos e acompanhar chamados.</p>
         </button>
       </div>
 
@@ -34,13 +28,8 @@
     <div class="form-card">
       <div class="form-header">
         <div>
-          <h2>
-            Cadastro de {{ tipoSelecionado === 'cliente' ? 'Cliente' : 'Luthier' }}
-          </h2>
-
-          <p>
-            Preencha os dados abaixo para criar sua conta.
-          </p>
+          <h2>Cadastro de {{ tipoSelecionado === 'cliente' ? 'Cliente' : 'Luthier' }}</h2>
+          <p>Preencha os dados abaixo para criar sua conta.</p>
         </div>
 
         <button type="button" class="btn-voltar" (click)="voltarEscolha()">
@@ -92,41 +81,18 @@
         @if (tipoSelecionado === 'luthier') {
           <label>
             Tempo de experiência
-            <input
-              type="text"
-              formControlName="tempoExperiencia"
-              placeholder="Ex: 5 anos"
-            >
+            <input type="text" formControlName="tempoExperiencia" placeholder="Ex: 5 anos">
           </label>
-
-          @if (cadastroForm.get('tempoExperiencia')?.invalid && cadastroForm.get('tempoExperiencia')?.touched) {
-            <small class="erro">Informe o tempo de experiência.</small>
-          }
 
           <label>
             Instrumentos que atende
-            <input
-              type="text"
-              formControlName="instrumentosAtendidos"
-              placeholder="Ex: violão, guitarra, baixo"
-            >
+            <input type="text" formControlName="instrumentosAtendidos" placeholder="Ex: violÃ£o, guitarra, baixo">
           </label>
-
-          @if (cadastroForm.get('instrumentosAtendidos')?.invalid && cadastroForm.get('instrumentosAtendidos')?.touched) {
-            <small class="erro">Informe os instrumentos atendidos.</small>
-          }
 
           <label>
             Descrição profissional
-            <textarea
-              formControlName="descricaoProfissional"
-              placeholder="Fale um pouco sobre sua experiência como luthier"
-            ></textarea>
+            <textarea formControlName="descricaoProfissional" placeholder="Fale um pouco sobre sua experiÃªncia como luthier"></textarea>
           </label>
-
-          @if (cadastroForm.get('descricaoProfissional')?.invalid && cadastroForm.get('descricaoProfissional')?.touched) {
-            <small class="erro">Informe uma descrição profissional com pelo menos 10 caracteres.</small>
-          }
         }
 
         <button type="submit" [disabled]="carregando">

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -39,15 +39,14 @@ export class RegistrarConserto implements OnInit {
 
   carregarServicos(): void {
     this.servicoService.listarServicos().subscribe({
-      next: (dados: Servico[]) => {
+      next: (dados) => {
         this.servicos = dados.filter(servico =>
           servico.status === 'aceito' || servico.status === 'em_andamento'
         );
-
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar serviços.';
+        this.mensagemErro = 'Erro ao carregar serviÃ§os.';
         this.carregando = false;
       }
     });
@@ -59,7 +58,7 @@ export class RegistrarConserto implements OnInit {
     const valor = Number(this.consertoForm.value.pecaValor);
 
     if (!nome || valor <= 0) {
-      alert('Informe o nome da peça e um valor maior que zero.');
+      alert('Informe o nome da peÃ§a e um valor maior que zero.');
       return;
     }
 

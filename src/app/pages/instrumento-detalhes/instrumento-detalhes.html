@@ -1,4 +1,4 @@
-@if (carregando) {
+﻿@if (carregando) {
   <p>Carregando detalhes...</p>
 }
 
@@ -23,19 +23,13 @@
       </p>
 
       <div class="acoes">
-        <button type="button" (click)="adicionarAoCarrinho()">
-          Adicionar ao carrinho
-        </button>
+        <button type="button" (click)="adicionarAoCarrinho()">Adicionar ao carrinho</button>
 
         @if (instrumento.aceitaTroca) {
-          <button type="button" (click)="solicitarTroca()">
-            Solicitar troca
-          </button>
+          <button type="button" (click)="solicitarTroca()">Solicitar troca</button>
         }
 
-        <button type="button" (click)="solicitarConserto()">
-          Solicitar conserto
-        </button>
+        <button type="button" (click)="solicitarConserto()">Solicitar conserto</button>
 
         <a routerLink="/catalogo" class="btn-link">Voltar</a>
       </div>

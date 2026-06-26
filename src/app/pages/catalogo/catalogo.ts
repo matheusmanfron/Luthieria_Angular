@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { Instrumento } from '../../models/instrumento-model';
 import { InstrumentoService } from '../../services/instrumento';
@@ -8,7 +8,7 @@ import { CarrinhoService } from '../../services/carrinho';
 
 @Component({
   selector: 'app-catalogo',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css',
 })

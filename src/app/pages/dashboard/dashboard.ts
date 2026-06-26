@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+﻿import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth';
@@ -11,7 +11,7 @@ import { Servico } from '../../models/servico-model';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, RouterLink, CurrencyPipe],
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -52,34 +52,26 @@ export class Dashboard implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar serviços.';
+        this.mensagemErro = 'Erro ao carregar serviÃ§os.';
         this.carregando = false;
       }
     });
   }
 
   get meusAnuncios(): Instrumento[] {
-    return this.instrumentos.filter(
-      instrumento => instrumento.donoId === this.usuarioLogadoId
-    );
+    return this.instrumentos.filter(instrumento => instrumento.donoId === this.usuarioLogadoId);
   }
 
   get meusServicos(): Servico[] {
-    return this.servicos.filter(
-      servico => servico.clienteId === this.usuarioLogadoId
-    );
+    return this.servicos.filter(servico => servico.clienteId === this.usuarioLogadoId);
   }
 
   get servicosEmAndamento(): number {
-    return this.meusServicos.filter(
-      servico => servico.status === 'em_andamento'
-    ).length;
+    return this.meusServicos.filter(servico => servico.status === 'em_andamento').length;
   }
 
   get anunciosComTroca(): number {
-    return this.meusAnuncios.filter(
-      instrumento => instrumento.aceitaTroca
-    ).length;
+    return this.meusAnuncios.filter(instrumento => instrumento.aceitaTroca).length;
   }
 
   fazerLogout(): void {

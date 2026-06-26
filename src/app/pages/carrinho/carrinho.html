@@ -1,4 +1,4 @@
-<section class="page-header">
+﻿<section class="page-header">
   <div>
     <h2>Meu Carrinho</h2>
     <p>Confira os instrumentos adicionados antes de finalizar a compra.</p>
@@ -9,9 +9,8 @@
 
 @if (itens.length === 0) {
   <section class="vazio">
-    <h3>Seu carrinho está vazio</h3>
+    <h3>Seu carrinho estÃ¡ vazio</h3>
     <p>Adicione instrumentos pelo catálogo para simular uma compra.</p>
-
     <a routerLink="/catalogo" class="btn-link">Ver catálogo</a>
   </section>
 } @else {
@@ -21,47 +20,22 @@
         <article class="card item-card">
           <div class="item-info">
             <h3>{{ item.instrumento.nome }}</h3>
-
-            <p>
-              <strong>Marca:</strong>
-              {{ item.instrumento.marca }}
-            </p>
-
-            <p>
-              <strong>Modelo:</strong>
-              {{ item.instrumento.modelo }}
-            </p>
-
-            <p>
-              <strong>Estado:</strong>
-              {{ item.instrumento.estado }}
-            </p>
-
-            <p>
-              <strong>Preço:</strong>
-              {{ item.instrumento.preco | currency:'BRL' }}
-            </p>
+            <p><strong>Marca:</strong> {{ item.instrumento.marca }}</p>
+            <p><strong>Modelo:</strong> {{ item.instrumento.modelo }}</p>
+            <p><strong>Estado:</strong> {{ item.instrumento.estado }}</p>
+            <p><strong>Preço:</strong> {{ item.instrumento.preco | currency:'BRL' }}</p>
           </div>
 
           <div class="controles">
             <div class="quantidade">
               <button type="button" (click)="diminuirQuantidade(item)">-</button>
-
               <span>{{ item.quantidade }}</span>
-
               <button type="button" (click)="aumentarQuantidade(item)">+</button>
             </div>
 
-            <p>
-              <strong>Subtotal:</strong>
-              {{ item.instrumento.preco * item.quantidade | currency:'BRL' }}
-            </p>
+            <p><strong>Subtotal:</strong> {{ item.instrumento.preco * item.quantidade | currency:'BRL' }}</p>
 
-            <button
-              type="button"
-              class="btn-danger"
-              (click)="removerItem(item.instrumento.id)"
-            >
+            <button type="button" class="btn-danger" (click)="removerItem(item.instrumento.id)">
               Remover
             </button>
           </div>
@@ -71,24 +45,11 @@
 
     <aside class="resumo">
       <h3>Resumo da compra</h3>
+      <p><strong>Itens:</strong> {{ itens.length }}</p>
+      <p><strong>Total:</strong> {{ total | currency:'BRL' }}</p>
 
-      <p>
-        <strong>Itens:</strong>
-        {{ itens.length }}
-      </p>
-
-      <p>
-        <strong>Total:</strong>
-        {{ total | currency:'BRL' }}
-      </p>
-
-      <button type="button" (click)="finalizarCompra()">
-        Finalizar compra
-      </button>
-
-      <button type="button" class="btn-secundario" (click)="limparCarrinho()">
-        Limpar carrinho
-      </button>
+      <button type="button" (click)="finalizarCompra()">Finalizar compra</button>
+      <button type="button" class="btn-secundario" (click)="limparCarrinho()">Limpar carrinho</button>
     </aside>
   </section>
 }

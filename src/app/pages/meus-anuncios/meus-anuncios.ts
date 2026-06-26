@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+﻿import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { Instrumento } from '../../models/instrumento-model';
@@ -7,7 +7,7 @@ import { InstrumentoService } from '../../services/instrumento';
 
 @Component({
   selector: 'app-meus-anuncios',
-  imports: [CommonModule, CurrencyPipe, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './meus-anuncios.html',
   styleUrl: './meus-anuncios.css',
 })
@@ -29,18 +29,17 @@ export class MeusAnuncios implements OnInit {
         this.meusAnuncios = instrumentos.filter(
           instrumento => instrumento.donoId === this.usuarioLogadoId
         );
-
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar seus anúncios.';
+        this.mensagemErro = 'Erro ao carregar seus anÃºncios.';
         this.carregando = false;
       }
     });
   }
 
   pausarAnuncio(instrumento: Instrumento): void {
-    alert(`Anúncio "${instrumento.nome}" pausado apenas como representação.`);
+    alert(`AnÃºncio "${instrumento.nome}" pausado apenas como representaÃ§Ã£o.`);
   }
 
   removerDaTela(instrumentoId: number): void {
@@ -48,6 +47,6 @@ export class MeusAnuncios implements OnInit {
       instrumento => instrumento.id !== instrumentoId
     );
 
-    alert('Anúncio removido da tela. Remoção apenas visual no front-end.');
+    alert('AnÃºncio removido da tela. RemoÃ§Ã£o apenas visual no front-end.');
   }
 }

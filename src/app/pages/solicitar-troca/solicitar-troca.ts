@@ -1,7 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { Troca } from '../../models/troca-model';
 import { Instrumento } from '../../models/instrumento-model';
@@ -16,6 +16,7 @@ import { InstrumentoService } from '../../services/instrumento';
 })
 export class SolicitarTroca implements OnInit {
   private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
   private trocaService = inject(TrocaService);
   private instrumentoService = inject(InstrumentoService);
   private router = inject(Router);
@@ -31,12 +32,20 @@ export class SolicitarTroca implements OnInit {
   });
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      const instrumentoDesejadoId = Number(params.get('instrumentoDesejadoId') ?? 0);
+
+      if (instrumentoDesejadoId > 0) {
+        this.trocaForm.patchValue({ instrumentoDesejadoId });
+      }
+    });
+
     this.carregarInstrumentos();
   }
 
   carregarInstrumentos(): void {
     this.instrumentoService.listarInstrumentos().subscribe({
-      next: (dados: Instrumento[]) => {
+      next: (dados) => {
         this.instrumentos = dados;
         this.carregando = false;
       },
@@ -58,7 +67,7 @@ export class SolicitarTroca implements OnInit {
     const troca: Troca = {
       id: Date.now(),
       usuarioSolicitanteId: 1,
-      usuarioRecebebedorId: 2,
+      usuarioRecebedorId: 2,
       instrumentoOferecidoId: Number(valor.instrumentoOferecidoId),
       instrumentoDesejadoId: Number(valor.instrumentoDesejadoId),
       mensagem: valor.mensagem ?? '',
@@ -68,7 +77,7 @@ export class SolicitarTroca implements OnInit {
 
     this.trocaService.solicitarTroca(troca).subscribe({
       next: () => {
-        alert('Solicitação de troca enviada com sucesso!');
+        alert('SolicitaÃ§Ã£o de troca enviada com sucesso!');
         this.router.navigate(['/dashboard']);
       },
       error: () => {

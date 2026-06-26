@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+﻿import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 
 import { CarrinhoService } from '../../services/carrinho';
@@ -7,7 +7,7 @@ import { ItemCarrinho } from '../../models/carrinho-model';
 
 @Component({
   selector: 'app-carrinho',
-  imports: [CommonModule, CurrencyPipe, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './carrinho.html',
   styleUrl: './carrinho.css',
 })
@@ -54,11 +54,11 @@ export class Carrinho implements OnInit {
 
   finalizarCompra(): void {
     if (this.itens.length === 0) {
-      alert('Seu carrinho está vazio.');
+      alert('Seu carrinho estÃ¡ vazio.');
       return;
     }
 
-    alert('Compra finalizada com sucesso! Esta é apenas uma representação de front-end.');
+    alert('Compra finalizada com sucesso! Esta Ã© apenas uma representaÃ§Ã£o de front-end.');
     this.carrinhoService.limparCarrinho();
     this.router.navigate(['/dashboard']);
   }

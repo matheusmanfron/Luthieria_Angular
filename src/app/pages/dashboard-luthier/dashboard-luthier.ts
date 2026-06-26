@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { Servico } from '../../models/servico-model';
 import { ServicoService } from '../../services/servico-luthier';
 
 @Component({
   selector: 'app-dashboard-luthier',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard-luthier.html',
   styleUrl: './dashboard-luthier.css',
 })
 export class DashboardLuthier implements OnInit {
+  private servicoService = inject(ServicoService);
+
   servicos: Servico[] = [];
   mensagemErro = '';
-
-  constructor(private servicoService: ServicoService) {}
 
   ngOnInit(): void {
     this.carregarServicos();
@@ -27,7 +27,7 @@ export class DashboardLuthier implements OnInit {
         this.servicos = dados;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar serviços.';
+        this.mensagemErro = 'Erro ao carregar serviÃ§os.';
       }
     });
   }
@@ -50,7 +50,7 @@ export class DashboardLuthier implements OnInit {
         servico.status = status;
       },
       error: () => {
-        alert('Erro ao atualizar serviço.');
+        alert('Erro ao atualizar serviÃ§o.');
       }
     });
   }

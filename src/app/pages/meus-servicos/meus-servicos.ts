@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -29,25 +29,22 @@ export class MeusServicos implements OnInit {
         this.meusServicos = servicos.filter(
           servico => servico.clienteId === this.usuarioLogadoId
         );
-
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar seus serviços.';
+        this.mensagemErro = 'Erro ao carregar seus serviÃ§os.';
         this.carregando = false;
       }
     });
   }
 
   cancelarServico(servico: Servico): void {
-    this.servicoService.atualizarServico(servico.id, {
-      status: 'cancelado'
-    }).subscribe({
+    this.servicoService.atualizarServico(servico.id, { status: 'cancelado' }).subscribe({
       next: () => {
         servico.status = 'cancelado';
       },
       error: () => {
-        alert('Erro ao cancelar serviço.');
+        alert('Erro ao cancelar serviÃ§o.');
       }
     });
   }

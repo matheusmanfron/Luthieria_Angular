@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class ChamadosServicos implements OnInit {
 
   carregarChamados(): void {
     this.servicoService.listarChamadosAbertos().subscribe({
-      next: (dados: Servico[]) => {
+      next: (dados) => {
         this.chamados = dados;
         this.carregando = false;
       },

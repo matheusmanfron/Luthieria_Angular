@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+﻿import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { Instrumento } from '../../models/instrumento-model';
@@ -8,7 +8,7 @@ import { CarrinhoService } from '../../services/carrinho';
 
 @Component({
   selector: 'app-instrumento-detalhes',
-  imports: [CommonModule, CurrencyPipe, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './instrumento-detalhes.html',
   styleUrl: './instrumento-detalhes.css',
 })
@@ -31,7 +31,7 @@ export class InstrumentoDetalhes implements OnInit {
         this.carregando = false;
 
         if (!this.instrumento) {
-          this.mensagemErro = 'Instrumento não encontrado.';
+          this.mensagemErro = 'Instrumento nÃ£o encontrado.';
         }
       },
       error: () => {
@@ -68,6 +68,10 @@ export class InstrumentoDetalhes implements OnInit {
       return;
     }
 
-    alert(`Solicitação de troca para ${this.instrumento.nome} registrada como representação.`);
+    this.router.navigate(['/troca/solicitar'], {
+      queryParams: {
+        instrumentoDesejadoId: this.instrumento.id
+      }
+    });
   }
 }

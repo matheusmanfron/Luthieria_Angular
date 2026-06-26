@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,10 @@ export class InstrumentoService {
 
   listarInstrumentos(): Observable<Instrumento[]> {
     return this.http.get<Instrumento[]>(this.apiUrl);
+  }
+
+  buscarInstrumentoPorId(id: number): Observable<Instrumento> {
+    return this.http.get<Instrumento>(`${this.apiUrl}/${id}`);
   }
 
   cadastrarInstrumento(instrumento: Instrumento): Observable<Instrumento> {

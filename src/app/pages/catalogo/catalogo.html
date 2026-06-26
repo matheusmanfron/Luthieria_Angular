@@ -1,5 +1,5 @@
-<section class="page-header">
-  <h2>Catálogo de Instrumentos</h2>
+﻿<section class="page-header">
+  <h2>CatÃ¡logo de Instrumentos</h2>
   <p>Veja instrumentos disponíveis para compra, troca ou conserto.</p>
 </section>
 
@@ -24,13 +24,21 @@
       <p>{{ instrumento.descricao }}</p>
 
       <div class="acoes">
-        <button (click)="adicionarAoCarrinho(instrumento)">Adicionar ao carrinho</button>
+        <a [routerLink]="['/instrumentos', instrumento.id]" class="btn-link">Ver detalhes</a>
+
+        <button type="button" (click)="adicionarAoCarrinho(instrumento)">
+          Adicionar ao carrinho
+        </button>
 
         @if (instrumento.aceitaTroca) {
-          <button type="button" (click)="solicitarTroca(instrumento)">Solicitar troca</button>
+          <button type="button" (click)="solicitarTroca(instrumento)">
+            Solicitar troca
+          </button>
         }
 
-        <button type="button" (click)="solicitarConserto(instrumento)">Solicitar conserto</button>
+        <button type="button" (click)="solicitarConserto(instrumento)">
+          Solicitar conserto
+        </button>
       </div>
     </article>
   } @empty {

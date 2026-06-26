@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+﻿import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,6 @@ import { ServicoService } from '../../services/servico-luthier';
 
 @Component({
   selector: 'app-solicitar-conserto',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './solicitar-conserto.html',
   styleUrl: './solicitar-conserto.css',
@@ -58,7 +57,7 @@ export class SolicitarConserto implements OnInit {
 
     this.servicoService.solicitarConserto(servico).subscribe({
       next: () => {
-        alert('Solicitação de conserto enviada com sucesso!');
+        alert('SolicitaÃ§Ã£o de conserto enviada com sucesso!');
         this.router.navigate(['/meus-servicos']);
       },
       error: () => {

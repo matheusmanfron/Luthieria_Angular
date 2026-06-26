@@ -1,37 +1,40 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Instrumento } from '../models/instrumento-model';
 import { ItemCarrinho } from '../models/carrinho-model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class CarrinhoService{
-    private itens: ItemCarrinho[] = [];
+export class CarrinhoService {
+  private itens: ItemCarrinho[] = [];
 
-    adicionarAoCarrinho(instrumento: Instrumento): void{
-        this.itens.push({
-            instrumento,
-            quantidade: 1
-        });
+  adicionarAoCarrinho(instrumento: Instrumento): void {
+    const itemExistente = this.itens.find(item => item.instrumento.id === instrumento.id);
+
+    if (itemExistente) {
+      itemExistente.quantidade++;
+      return;
     }
 
-    listarItens(): ItemCarrinho[]{
-        return this.itens;
-    }
+    this.itens.push({ instrumento, quantidade: 1 });
+  }
 
-    removerItem(instrumentoId: number): void{
-        this.itens = this.itens.filter(
-            item => item.instrumento.id !== instrumentoId
-        );
-    }
+  listarItens(): ItemCarrinho[] {
+    return this.itens;
+  }
 
-    limparCarrinho(): void{
-        this.itens = [];
-    }
+  removerItem(instrumentoId: number): void {
+    this.itens = this.itens.filter(item => item.instrumento.id !== instrumentoId);
+  }
 
-    calcularTotal(): number {
-        return this.itens.reduce(
-            (total, item) => total + item.instrumento.preco * item.quantidade, 0
-        );
-    }
+  limparCarrinho(): void {
+    this.itens = [];
+  }
+
+  calcularTotal(): number {
+    return this.itens.reduce(
+      (total, item) => total + item.instrumento.preco * item.quantidade,
+      0
+    );
+  }
 }
