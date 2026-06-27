@@ -27,7 +27,7 @@ export class DashboardLuthier implements OnInit {
         this.servicos = dados;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar serviÃ§os.';
+        this.mensagemErro = 'Erro ao carregar serviços.';
       }
     });
   }
@@ -50,7 +50,7 @@ export class DashboardLuthier implements OnInit {
         servico.status = status;
       },
       error: () => {
-        alert('Erro ao atualizar serviÃ§o.');
+        alert('Erro ao atualizar serviço.');
       }
     });
   }

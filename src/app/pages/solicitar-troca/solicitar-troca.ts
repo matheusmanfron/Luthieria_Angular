@@ -77,7 +77,7 @@ export class SolicitarTroca implements OnInit {
 
     this.trocaService.solicitarTroca(troca).subscribe({
       next: () => {
-        alert('SolicitaÃ§Ã£o de troca enviada com sucesso!');
+        alert('Solicitação de troca enviada com sucesso!');
         this.router.navigate(['/dashboard']);
       },
       error: () => {

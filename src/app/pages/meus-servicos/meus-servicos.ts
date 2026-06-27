@@ -32,7 +32,7 @@ export class MeusServicos implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar seus serviÃ§os.';
+        this.mensagemErro = 'Erro ao carregar seus serviços.';
         this.carregando = false;
       }
     });
@@ -44,7 +44,7 @@ export class MeusServicos implements OnInit {
         servico.status = 'cancelado';
       },
       error: () => {
-        alert('Erro ao cancelar serviÃ§o.');
+        alert('Erro ao cancelar serviço.');
       }
     });
   }

@@ -52,7 +52,7 @@ export class Dashboard implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar serviÃ§os.';
+        this.mensagemErro = 'Erro ao carregar serviços.';
         this.carregando = false;
       }
     });

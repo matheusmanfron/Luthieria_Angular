@@ -1,6 +1,6 @@
 ﻿<section class="page-header">
   <h2>Meus Anúncios</h2>
-  <p>Veja os instrumentos que vocêª anunciou na plataforma.</p>
+  <p>Veja os instrumentos que você anunciou na plataforma.</p>
 
   <a routerLink="/instrumentos/novo" class="btn-link">
     Anunciar novo instrumento
@@ -24,8 +24,8 @@
       <p><strong>Marca:</strong> {{ instrumento.marca }}</p>
       <p><strong>Modelo:</strong> {{ instrumento.modelo }}</p>
       <p><strong>Estado:</strong> {{ instrumento.estado }}</p>
-      <p><strong>PreÃ§o:</strong> {{ instrumento.preco | currency:'BRL' }}</p>
-      <p><strong>Aceita troca:</strong> {{ instrumento.aceitaTroca ? 'Sim' : 'NÃ£o' }}</p>
+      <p><strong>Preço:</strong> {{ instrumento.preco | currency:'BRL' }}</p>
+      <p><strong>Aceita troca:</strong> {{ instrumento.aceitaTroca ? 'Sim' : 'Não' }}</p>
       <p>{{ instrumento.descricao }}</p>
 
       <div class="acoes">

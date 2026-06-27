@@ -46,7 +46,7 @@ export class RegistrarConserto implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar serviÃ§os.';
+        this.mensagemErro = 'Erro ao carregar serviços.';
         this.carregando = false;
       }
     });
@@ -58,7 +58,7 @@ export class RegistrarConserto implements OnInit {
     const valor = Number(this.consertoForm.value.pecaValor);
 
     if (!nome || valor <= 0) {
-      alert('Informe o nome da peÃ§a e um valor maior que zero.');
+      alert('Informe o nome da peça e um valor maior que zero.');
       return;
     }
 

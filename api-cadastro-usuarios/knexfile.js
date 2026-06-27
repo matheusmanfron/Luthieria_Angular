@@ -1,14 +1,14 @@
-// Update with your config settings.
+﻿require('dotenv').config();
 
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
 module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './dev.sqlite3' // O arquivo do banco será criado aqui
+      filename: './dev.sqlite3'
     },
-    useNullAsDefault: true // Necessário para o SQLite no Knex
+    useNullAsDefault: true,
+    migrations: {
+      directory: './migrations'
+    }
   }
 };

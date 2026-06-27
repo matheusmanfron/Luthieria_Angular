@@ -1,13 +1,24 @@
-/**
+﻿/**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
-  // Cria a tabela 'users'
+exports.up = function (knex) {
   return knex.schema.createTable('users', table => {
-    table.increments('id').primary(); // ID automático
-    table.string('email').notNullable().unique(); // Email obrigatório e único
-    table.string('password').notNullable(); // Senha obrigatória (guardaremos o hash)
+    table.increments('id').primary();
+
+    table.string('nome').notNullable();
+    table.string('email').notNullable().unique();
+    table.string('telefone').notNullable();
+
+    table.string('password').notNullable();
+
+    table.enu('tipo', ['cliente', 'luthier']).notNullable().defaultTo('cliente');
+
+    table.string('tempo_experiencia').nullable();
+    table.text('instrumentos_atendidos').nullable();
+    table.text('descricao_profissional').nullable();
+
+    table.timestamps(true, true);
   });
 };
 
@@ -15,7 +26,6 @@ exports.up = function(knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
-  // Desfaz a criação da tabela (útil para reverter alterações)
+exports.down = function (knex) {
   return knex.schema.dropTable('users');
 };

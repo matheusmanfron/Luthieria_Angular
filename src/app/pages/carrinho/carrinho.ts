@@ -54,11 +54,11 @@ export class Carrinho implements OnInit {
 
   finalizarCompra(): void {
     if (this.itens.length === 0) {
-      alert('Seu carrinho estÃ¡ vazio.');
+      alert('Seu carrinho está vazio.');
       return;
     }
 
-    alert('Compra finalizada com sucesso! Esta Ã© apenas uma representaÃ§Ã£o de front-end.');
+    alert('Compra finalizada com sucesso!');
     this.carrinhoService.limparCarrinho();
     this.router.navigate(['/dashboard']);
   }

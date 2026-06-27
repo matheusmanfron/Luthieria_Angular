@@ -31,7 +31,7 @@ export class InstrumentoDetalhes implements OnInit {
         this.carregando = false;
 
         if (!this.instrumento) {
-          this.mensagemErro = 'Instrumento nÃ£o encontrado.';
+          this.mensagemErro = 'Instrumento não encontrado.';
         }
       },
       error: () => {

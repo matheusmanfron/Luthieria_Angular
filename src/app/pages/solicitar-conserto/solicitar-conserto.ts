@@ -57,7 +57,7 @@ export class SolicitarConserto implements OnInit {
 
     this.servicoService.solicitarConserto(servico).subscribe({
       next: () => {
-        alert('SolicitaÃ§Ã£o de conserto enviada com sucesso!');
+        alert('Solicitação de conserto enviada com sucesso!');
         this.router.navigate(['/meus-servicos']);
       },
       error: () => {

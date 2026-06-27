@@ -41,7 +41,7 @@ export class Login {
       },
       error: () => {
         this.carregando = false;
-        this.mensagemErro = 'E-mail ou senha invÃ¡lidos.';
+        this.mensagemErro = 'E-mail ou senha inválidos.';
       }
     });
   }

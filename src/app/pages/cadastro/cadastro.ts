@@ -68,7 +68,7 @@ export class Cadastro {
 
   onSubmit(): void {
     if (!this.tipoSelecionado) {
-      this.mensagemErro = 'Selecione se vocÃª Ã© cliente ou luthier.';
+      this.mensagemErro = 'Selecione se você é cliente ou luthier.';
       return;
     }
 

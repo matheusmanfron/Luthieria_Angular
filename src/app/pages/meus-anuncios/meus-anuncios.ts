@@ -32,14 +32,14 @@ export class MeusAnuncios implements OnInit {
         this.carregando = false;
       },
       error: () => {
-        this.mensagemErro = 'Erro ao carregar seus anÃºncios.';
+        this.mensagemErro = 'Erro ao carregar seus anúncios.';
         this.carregando = false;
       }
     });
   }
 
   pausarAnuncio(instrumento: Instrumento): void {
-    alert(`AnÃºncio "${instrumento.nome}" pausado apenas como representaÃ§Ã£o.`);
+    alert(`Anúncio "${instrumento.nome}" pausado apenas como representação.`);
   }
 
   removerDaTela(instrumentoId: number): void {
@@ -47,6 +47,6 @@ export class MeusAnuncios implements OnInit {
       instrumento => instrumento.id !== instrumentoId
     );
 
-    alert('AnÃºncio removido da tela. RemoÃ§Ã£o apenas visual no front-end.');
+    alert('Anúncio removido da tela.');
   }
 }
