@@ -8,6 +8,7 @@ import { ServicoService } from '../../services/servico-luthier';
 
 @Component({
   selector: 'app-solicitar-conserto',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './solicitar-conserto.html',
   styleUrl: './solicitar-conserto.css',
@@ -17,6 +18,9 @@ export class SolicitarConserto implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private servicoService = inject(ServicoService);
+
+  carregando = false;
+  mensagemErro = '';
 
   consertoForm = this.fb.group({
     instrumentoId: [0],
@@ -55,13 +59,19 @@ export class SolicitarConserto implements OnInit {
       observacoes: valor.problema ?? ''
     };
 
+    this.carregando = true;
+    this.mensagemErro = '';
+
     this.servicoService.solicitarConserto(servico).subscribe({
       next: () => {
+        this.carregando = false;
         alert('Solicitação de conserto enviada com sucesso!');
         this.router.navigate(['/meus-servicos']);
       },
-      error: () => {
-        alert('Erro ao solicitar conserto.');
+      error: (erro) => {
+        this.carregando = false;
+        this.mensagemErro = erro?.error?.erro || 'Erro ao solicitar conserto.';
+        console.error('Erro ao solicitar conserto:', erro);
       }
     });
   }

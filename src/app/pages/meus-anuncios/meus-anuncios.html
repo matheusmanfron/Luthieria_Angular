@@ -35,6 +35,8 @@
       </div>
     </article>
   } @empty {
-    <p>Você ainda não possui anúncios cadastrados.</p>
+    @if (!carregando) {
+      <p>Você ainda não possui anúcios cadastrados.</p>
+    }
   }
 </section>

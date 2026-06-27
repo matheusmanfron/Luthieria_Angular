@@ -5,7 +5,7 @@
   <form [formGroup]="instrumentoForm" (ngSubmit)="onSubmit()">
     <label>
       Nome do instrumento
-      <input type="text" formControlName="nome">
+      <input type="text" formControlName="nome" placeholder="Ex: Violão Yamaha">
     </label>
 
     <label>
@@ -23,12 +23,12 @@
 
     <label>
       Marca
-      <input type="text" formControlName="marca">
+      <input type="text" formControlName="marca" placeholder="Ex: Yamaha">
     </label>
 
     <label>
       Modelo
-      <input type="text" formControlName="modelo">
+      <input type="text" formControlName="modelo" placeholder="Ex: C40">
     </label>
 
     <label>
@@ -52,7 +52,7 @@
 
     <label>
       Descrição
-      <textarea formControlName="descricao"></textarea>
+      <textarea formControlName="descricao" placeholder="Descreva o instrumento"></textarea>
     </label>
 
     <button type="submit">Cadastrar Instrumento</button>

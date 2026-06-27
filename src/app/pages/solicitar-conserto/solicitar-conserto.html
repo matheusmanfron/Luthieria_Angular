@@ -2,16 +2,28 @@
   <h2>Solicitar Conserto</h2>
   <p>Informe o instrumento e descreva o problema encontrado.</p>
 
+  @if (mensagemErro) {
+    <p class="erro">{{ mensagemErro }}</p>
+  }
+
   <form [formGroup]="consertoForm" (ngSubmit)="onSubmit()">
     <label>
       Instrumento
-      <input type="text" formControlName="instrumento">
+      <input type="text" formControlName="instrumento" placeholder="Ex: Violão Yamaha">
     </label>
+
+    @if (consertoForm.get('instrumento')?.invalid && consertoForm.get('instrumento')?.touched) {
+      <small class="erro">Informe o instrumento.</small>
+    }
 
     <label>
       Descreva o problema
-      <textarea formControlName="problema"></textarea>
+      <textarea formControlName="problema" placeholder="Descreva o problema do instrumento"></textarea>
     </label>
+
+    @if (consertoForm.get('problema')?.invalid && consertoForm.get('problema')?.touched) {
+      <small class="erro">Descreva o problema com pelo menos 10 caracteres.</small>
+    }
 
     <label>
       Luthier responsável
@@ -20,6 +32,8 @@
       </select>
     </label>
 
-    <button type="submit">Enviar Solicitação</button>
+    <button type="submit" [disabled]="carregando">
+      {{ carregando ? 'Enviando...' : 'Enviar Solicitação' }}
+    </button>
   </form>
 </section>

@@ -33,6 +33,8 @@
       }
     </article>
   } @empty {
-    <p>Você ainda não solicitou nenhum serviço.</p>
+    @if (!carregando) {
+      <p>Você ainda não solicitou nenhum serviço.</p>
+    }
   }
 </section>

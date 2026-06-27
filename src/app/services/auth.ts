@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 export interface LoginResponse {
   token: string;
+  usuario?: unknown;
+  mensagem?: string;
 }
 
 @Injectable({
@@ -15,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   cadastrarUsuario(dados: unknown): Observable<unknown> {
-    return this.http.post(`${this.apiUrl}/cadastro`, dados);
+    return this.http.post<unknown>(`${this.apiUrl}/cadastro`, dados);
   }
 
   fazerLogin(dados: unknown): Observable<LoginResponse> {
